@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+.logoIcon {
+  svg {
+    transform: rotate(33deg);
+  }
+}
+.mainContainer {
+  min-height: 100dvh;
+}
