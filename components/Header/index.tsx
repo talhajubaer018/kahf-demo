@@ -4,6 +4,8 @@ import React from 'react'
 import IconComponent from '../IconComponent'
 import { cn } from '@/utils/tailwind-merge'
 import Link from 'next/link'
+import { Button } from '../ButtonComponent'
+import { COLOR_GRAY, COLOR_PRIMARY } from '@/utils/colorUtils'
 
 type PropsType = {
   currentTab: string
@@ -22,31 +24,30 @@ const Header = (props: PropsType) => {
       </div>
       <div className='mx-auto flex items-center gap-x-4'>
         <Link href='/links'>
-          <div className={cn("flex items-center gap-x-2 rounded-md px-5 py-1.5", { 'bg-primary/20 text-primary': props?.currentTab === 'links' })}>
+          <div className={cn("flex items-center gap-x-2 rounded-md px-5 py-1.5 text-sm text-textGray", { 'bg-primary/20 text-primary': props?.currentTab === 'links' })}>
             <IconComponent
               name={"Link"}
               weight={props?.currentTab === 'links' ? 'bold' : 'regular'}
-              color={props?.currentTab === 'links' ? '#613bf7' : "textGray"}
+              color={props?.currentTab === 'links' ? COLOR_PRIMARY : COLOR_GRAY}
               fontSize={16}
             />
             <div className='font-bold'>Links</div>
           </div>
         </Link>
         <Link href='/profile'>
-          <div className={cn("flex items-center gap-x-2 rounded-md px-5 py-1.5", { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })}>
+          <div className={cn("flex items-center gap-x-2 rounded-md px-5 py-1.5 text-sm text-textGray", { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })}>
             <IconComponent
               name={"UserCircle"}
               weight={props?.currentTab === 'profile' ? 'bold' : 'regular'}
-              color={props?.currentTab === 'profile' ? '#613bf7' : "textGray"}
+              color={props?.currentTab === 'profile' ? COLOR_PRIMARY : COLOR_GRAY}
               fontSize={18}
             />
             <div className='font-bold'>Profile Details</div>
           </div>
+          {/* <Button prefixIcon='UserCircle' className={cn('font-bold ', { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })} size={'md'} variant={'default'} >Profile Details</Button> */}
         </Link>
       </div>
-      <div className="ml-auto text-primary border-[1px] border-primary rounded-md px-5 py-1.5">
-        <div>Preview</div>
-      </div>
+      <Button className='ml-auto font-bold text-primary' size={'md'} variant={'outline'} >Preview</Button>
     </header>
   )
 }

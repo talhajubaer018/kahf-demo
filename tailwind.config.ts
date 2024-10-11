@@ -13,9 +13,12 @@ const config: Config = {
         foreground: "var(--foreground)",
 
         primary: '#613bf7',
+        borderColor: '#613bf7',
+        outlineHover: '',
 
         textBlack: '#343434',
-        textGray: '#bcbcbc',
+        textGray: '#888888',
+        textLightGray: '#eeeeee',
       },
     },
   },

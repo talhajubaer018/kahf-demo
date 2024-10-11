@@ -33,3 +33,17 @@ body {
 .mainContainer {
   min-height: 100dvh;
 }
+.previewDiv {
+  background-image: url("../public/iphone-mockup.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  /* height: 400px; */
+  background-color: white;
+  min-height: calc(100dvh - 108px);
+  background-size: 60%;
+  border-radius: 6px;
+  /* background-blend-mode: invert(5%) sepia(2%) saturate(844%) hue-rotate(202deg) brightness(113%) contrast(87%);; */
+}
+.grid-custom {
+  grid-template-columns: 500px 2fr;
+}
