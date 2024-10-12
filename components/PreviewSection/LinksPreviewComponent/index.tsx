@@ -25,7 +25,8 @@ const LinksPreviewComponent = (props: PropsType) => {
                         <div
                             key={`${link?.id}`}
                             className={
-                                cn('bg-black rounded-md py-2 px-3 mx-4 flex items-center gap-x-2 text-white text-sm',
+                                cn('bg-textLightGray rounded-md py-2 px-3 mx-4 flex items-center gap-x-2 text-white text-sm',
+                                    { 'bg-black': link?.value === 'github' },
                                     { 'bg-[#ef383a]': link?.value === 'youtube' },
                                     { 'bg-[#2d69ff]': link?.value === 'linkedIn' },
                                 )
