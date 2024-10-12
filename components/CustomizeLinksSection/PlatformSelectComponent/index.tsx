@@ -28,7 +28,6 @@ const PlatformSelectComponent = (props: PropsType) => {
     };
 
     const SingleValue = (props: any) => {
-        console.log("🚀 ~ SingleValue ~ props:", props)
         return (<components.SingleValue {...props}>
             <p>
                 <span className="flex items-center gap-x-2 font-regular text-textGray rounded-md relative">
@@ -47,8 +46,9 @@ const PlatformSelectComponent = (props: PropsType) => {
 
     return (
         <>
-            <div className='text-xs text-textGray mt-3 mb-2'>Platform</div>
+            <div className='text-xs text-textGray mt-3 mb-1'>Platform</div>
             <Select
+                className='focus:outline-primary'
                 options={options}
                 components={{ SingleValue, IndicatorSeparator }}
                 // styles={singleSelectStyles}

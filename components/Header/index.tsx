@@ -20,7 +20,7 @@ const Header = (props: PropsType) => {
         <div className='bg-primary rounded-md p-1 logoIcon'>
           <IconComponent name={'Link'} color={'white'} />
         </div>
-        <div className='font-extrabold text-lg'>devlinks</div>
+        <div className='font-extrabold text-lg md:block hidden'>devlinks</div>
       </div>
       <div className='mx-auto flex items-center gap-x-4'>
         <Link href='/links'>
@@ -31,7 +31,7 @@ const Header = (props: PropsType) => {
               color={props?.currentTab === 'links' ? COLOR_PRIMARY : COLOR_GRAY}
               fontSize={16}
             />
-            <div className='font-bold'>Links</div>
+            <div className='font-bold md:block hidden'>Links</div>
           </div>
         </Link>
         <Link href='/profile'>
@@ -42,12 +42,21 @@ const Header = (props: PropsType) => {
               color={props?.currentTab === 'profile' ? COLOR_PRIMARY : COLOR_GRAY}
               fontSize={18}
             />
-            <div className='font-bold'>Profile Details</div>
+            <div className='font-bold md:block hidden'>Profile Details</div>
           </div>
           {/* <Button prefixIcon='UserCircle' className={cn('font-bold ', { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })} size={'md'} variant={'default'} >Profile Details</Button> */}
         </Link>
       </div>
-      <Button className='ml-auto font-bold text-primary' size={'md'} variant={'outline'} >Preview</Button>
+      <Button className='ml-auto font-bold text-primary' size={'md'} variant={'outline'}>
+        <IconComponent
+          className=' block md:hidden'
+          name={"Eye"}
+          weight={'bold'}
+          color={COLOR_PRIMARY}
+          fontSize={18}
+        />
+        <div className='md:block hidden'>Preview</div>
+      </Button>
     </header>
   )
 }
