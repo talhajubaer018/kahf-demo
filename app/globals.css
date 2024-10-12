@@ -76,12 +76,44 @@ body {
   height: 1px;
   background-color: #eeeeee;
 }
+.dividerLineProfile {
+  position: absolute;
+  bottom: 60px;
+  left: -32px;
+  width: calc(100% + 64px);
+  height: 1px;
+  background-color: #eeeeee;
+}
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   .grid-custom {
     grid-template-columns: 1fr;
   }
   .previewDiv {
     display: none;
   }
+}
+.profile-custom-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+@media screen and (max-width: 480px) {
+  .profile-custom-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .profile-custom-grid {
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+.profile-upload-custom-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { LinkedinLogo, YoutubeLogo, GithubLogo, Link, UserCircle, ArrowRight, Eye } from '@phosphor-icons/react'
+import { LinkedinLogo, YoutubeLogo, GithubLogo, Link, UserCircle, ArrowRight, Eye, Image as ImageIcon, Warning } from '@phosphor-icons/react'
 import React from 'react'
 
 export type IconNameProps = ''
@@ -12,6 +12,8 @@ export type IconNameProps = ''
     | 'ArrowRight'
     | 'Loader'
     | 'Eye'
+    | 'ImageIcon'
+    | 'Warning'
 
 
 
@@ -33,6 +35,8 @@ const iconMap: { [key: string]: React.ReactElement } = {
     linkedIn: <LinkedinLogo />,
     ArrowRight: <ArrowRight />,
     Eye: <Eye />,
+    ImageIcon: <ImageIcon />,
+    Warning: <Warning />,
 
 }
 

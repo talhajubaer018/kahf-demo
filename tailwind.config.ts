@@ -19,6 +19,9 @@ const config: Config = {
         textBlack: '#343434',
         textGray: '#888888',
         textLightGray: '#eeeeee',
+
+        errorColor: '#C8322B',
+        errorBgColor: '#FEF2F2',
       },
     },
   },
