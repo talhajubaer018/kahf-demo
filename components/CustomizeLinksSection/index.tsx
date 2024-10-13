@@ -11,8 +11,9 @@ import { Button } from "../ButtonComponent";
 
 import PlatformSelectComponent from "./PlatformSelectComponent";
 import IconComponent from "../IconComponent";
-import { COLOR_GRAY } from "@/utils/colorUtils";
+import { COLOR_ERROR, COLOR_GRAY } from "@/utils/colorUtils";
 import { useRouter } from "next/navigation";
+import { cn } from "@/utils/tailwind-merge";
 
 
 type PropsType = {
@@ -34,9 +35,12 @@ type PropsType = {
 
 export default function CustomizeLinksSection(props: PropsType) {
     const router = useRouter()
+    // const linkValidator = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/
+    const linkValidator = /^[^\s/$.?#].[^\s]*\.[^\s]{2,}$/
 
     const [focusedInputId, setFocusedInputId] = useState<string | null>(null);
     const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
     console.log("🚀 ~ CustomizeLinksSection ~ inputRefs:", inputRefs)
 
     useEffect(() => {
@@ -45,9 +49,29 @@ export default function CustomizeLinksSection(props: PropsType) {
         }
     }, [props.linksArray, focusedInputId]);
 
+    const validateLinks = () => {
+        const newErrors: { [key: string]: string } = {};
+        props.linksArray.forEach(link => {
+            if (!link.link) {
+                newErrors[link.id] = "Link is required";
+            } else if (!linkValidator.test(link.link)) {
+                newErrors[link.id] = "Invalid URL";
+            }
+        });
+        return newErrors;
+    };
+
     const onSubmit = (e: any) => {
         e?.preventDefault()
         console.log("🚀 ~ onSubmit ~ e:", e)
+
+        const newErrors = validateLinks();
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setErrors({});
 
         if (props?.linksArray?.length) {
             localStorage.setItem('linksArray', JSON.stringify(props?.linksArray))
@@ -113,7 +137,7 @@ export default function CustomizeLinksSection(props: PropsType) {
                             // type="url"
                             // required
                             // pattern="^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$"
-                            className='mt-0 w-full pl-8 p-2 border-[1px] border-[#cccccc] rounded-md linkInput focus:outline-primary'
+                            className={cn('mt-0 w-full p-2 pl-8 border-[1px] border-[#cccccc] rounded-md linkInput focus:outline-primary', { 'border-errorColor': errors[link.id] })}
                             ref={(el) => {
                                 inputRefs.current[link.id] = el;
                             }}
@@ -129,6 +153,12 @@ export default function CustomizeLinksSection(props: PropsType) {
                                 props?.setLinksArray(updatedArray);
                             }}
                         />
+                        {errors[link.id] && (
+                            <p className="text-errorColor flex items-center gap-x-2 font-medium text-[12px] mt-1">
+                                <IconComponent name={"Warning"} color={COLOR_ERROR} fontSize={16} />
+                                {errors[link.id]}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
