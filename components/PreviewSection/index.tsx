@@ -28,11 +28,11 @@ const PreviewSection = (props: PropsType) => {
     console.log("🚀 ~ PreviewSection ~ props?.imagePreview:", props?.imagePreview)
     return (
         <section className='previewDiv flex flex-col items-center justify-center py-6'>
-            <div className='flex flex-col items-center '>
+            <div className='flex flex-col items-center'>
                 {
                     props?.imagePreview ?
-                        <ImageComponent className='w-16 h-16 bg-textLightGray rounded-full' imageClassName='rounded-full' src={props?.imagePreview} alt={'imagePreview'} width={'w-16'} height={'h-16'} /> :
-                        <div className='w-16 h-16 bg-textLightGray rounded-full'></div>
+                        <ImageComponent className='bg-textLightGray rounded-full border-2 border-primary' imageClassName='rounded-full' src={props?.imagePreview} alt={'imagePreview'} width={'w-20'} height={'h-20'} /> :
+                        <div className='w-20 h-20 bg-textLightGray rounded-full'></div>
                 }
                 {
                     props?.profileDetails?.firstName && props?.profileDetails?.lastName ?
@@ -41,7 +41,7 @@ const PreviewSection = (props: PropsType) => {
                 }
                 {
                     props?.profileDetails?.email ?
-                        <div className='max-w-[200px] text-wrap mt-3'>{props?.profileDetails?.email}</div> :
+                        <div className='max-w-[200px] text-xs text-gray-400 mt-3'>{props?.profileDetails?.email}</div> :
                         <div className='w-16 h-1.5 bg-textLightGray rounded-full mt-3'></div>
                 }
             </div>

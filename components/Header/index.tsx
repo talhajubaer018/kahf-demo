@@ -47,16 +47,18 @@ const Header = (props: PropsType) => {
           {/* <Button prefixIcon='UserCircle' className={cn('font-bold ', { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })} size={'md'} variant={'default'} >Profile Details</Button> */}
         </Link>
       </div>
-      <Button className='ml-auto font-bold text-primary' size={'md'} variant={'outline'}>
-        <IconComponent
-          className=' block md:hidden'
-          name={"Eye"}
-          weight={'bold'}
-          color={COLOR_PRIMARY}
-          fontSize={18}
-        />
-        <div className='md:block hidden'>Preview</div>
-      </Button>
+      <Link href='/preview'>
+        <Button className='ml-auto font-bold text-primary' size={'md'} variant={'outline'}>
+          <IconComponent
+            className=' block md:hidden'
+            name={"Eye"}
+            weight={'bold'}
+            color={COLOR_PRIMARY}
+            fontSize={18}
+          />
+          <div className='md:block hidden'>Preview</div>
+        </Button>
+      </Link>
     </header>
   )
 }

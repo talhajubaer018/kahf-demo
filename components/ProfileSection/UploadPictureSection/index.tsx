@@ -14,6 +14,18 @@ const UploadPictureSection = (props: PropsType) => {
 
     // const acceptedExtensions = ['.png', 'jpg', 'jpeg', 'bmp'];
 
+    async function storeImage(blobUrl: any) {
+      
+        const blob = await fetch(blobUrl).then((res) => res.blob());
+      
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result;
+          localStorage.setItem('imagePreview', base64String as string); // Store the Base64 image string
+        };
+        reader.readAsDataURL(blob);
+      }
+
     const handleResourceData = (newFiles: File[]) => {
         console.log("🚀 ~ handleResourceData ~ newFiles:", newFiles?.length)
         // const validFiles = newFiles.filter(file => {
@@ -29,7 +41,9 @@ const UploadPictureSection = (props: PropsType) => {
             console.log("🚀 ~ handleResourceData ~ imageUrl:", imageUrl)
             props?.setImagePreview(imageUrl)
 
-            localStorage.setItem("imagePreview", imageUrl)
+            storeImage(imageUrl);
+
+            // localStorage.setItem("imagePreview", imageUrl)
         }
     };
 

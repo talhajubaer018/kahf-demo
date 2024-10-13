@@ -3,15 +3,8 @@
 import CustomizeLinksSection from '@/components/CustomizeLinksSection'
 import Header from '@/components/Header'
 import PreviewSection from '@/components/PreviewSection'
+import { LinksArrayType } from '@/types/previewTypes'
 import React, { useEffect, useState } from 'react'
-
-type LinksArrayType = {
-    id: string;
-    value: 'github' | 'youtube' | 'linkedIn' | ''
-    label: string;
-    platform: string;
-    link: string;
-}[]
 
 const LinksPage = () => {
     const [linksArray, setLinksArray] = useState(

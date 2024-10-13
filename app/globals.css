@@ -112,8 +112,47 @@ body {
     gap: 12px;
   }
 }
+.profile-details-custom-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+@media screen and (max-width: 480px) {
+  .profile-details-custom-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .profile-details-custom-grid {
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
 .profile-upload-custom-grid {
   display: grid;
   grid-template-columns: 200px 1fr;
   align-items: center;
+}
+.previewPage .previewDiv {
+  background-image: none;
+  min-height: auto;
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  transform: translateX(-50%);
+  width: 25%;
+  min-width: 280px;
+  border-radius: 16px;
+  display: block !important;
+  @apply shadow-lg py-10 px-4
+}
+.previewPage .previewFlex {
+  width: 100%;
+}
+.previewPage .previewFlexChild {
+  width: 70%;
+  margin: auto;
 }

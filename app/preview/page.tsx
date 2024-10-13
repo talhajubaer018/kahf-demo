@@ -1,16 +1,14 @@
 'use client'
 
-import Header from '@/components/Header'
+import { Button } from '@/components/ButtonComponent'
 import PreviewSection from '@/components/PreviewSection'
-import ProfileSection from '@/components/ProfileSection'
 import { LinksArrayType } from '@/types/previewTypes'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-const ProfilePage = () => {
+const PreviewPage = () => {
     const [linksArray, setLinksArray] = useState(
         [
-            // { id: uuidv4(), value: 'github', label: 'Github', platform: 'Github', link: 'github.com' },
-            // { id: uuidv4(), value: 'youtube', label: 'Youtube', platform: 'Youtube', link: 'youtube.com' },
         ] as LinksArrayType
     );
 
@@ -22,19 +20,33 @@ const ProfilePage = () => {
         if (localStorage?.getItem('linksArray')) {
             setLinksArray(JSON.parse(localStorage.getItem('linksArray') as string))
         }
-        // if (localStorage?.getItem('imagePreview')) {
-        //     setImagePreview(JSON.parse(localStorage.getItem('imagePreview') as string))
-        // }
+        if (localStorage?.getItem('imagePreview')) {
+            setImagePreview((localStorage.getItem('imagePreview') as string))
+        }
         if (localStorage?.getItem('profileDetails')) {
             setProfileDetails(JSON.parse(localStorage.getItem('profileDetails') as string))
         }
 
     }, [])
 
+    const handleShareLink = () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link copied to clipboard!')
+        }).catch(err => {
+            console.error('Failed to copy: ', err)
+        })
+    }
+
     return (
-        <main className='mainContainer px-4 bg-red-200 pt-4'>
-            <Header currentTab='profile' />
-            <div className='grid grid-custom gap-x-4 mt-5'>
+        <main className='previewPage relative px-4 bg-primary pt-4 min-h-[280px] rounded-br-3xl rounded-bl-3xl'>
+            <header className='bg-white rounded-md py-3 px-5 flex items-center'>
+                <Link href='/links'>
+                    <Button variant={'outline'} className='text-primary' buttonDivClassName='mr-auto'>Back to Editor</Button>
+                </Link>
+                <Button onClick={handleShareLink} variant={'default'} className='text-white' buttonDivClassName='ml-auto '>Share Link</Button>
+            </header>
+            <div className=''>
                 <PreviewSection
                     linksArray={linksArray}
                     imagePreview={imagePreview}
@@ -42,17 +54,9 @@ const ProfilePage = () => {
                     profileDetails={profileDetails}
                     setProfileDetails={setProfileDetails}
                 />
-                <ProfileSection
-                    imagePreview={imagePreview}
-                    setImagePreview={setImagePreview}
-
-                    profileDetails={profileDetails}
-                    setProfileDetails={setProfileDetails}
-                />
-                
             </div>
         </main>
     )
 }
 
-export default ProfilePage
+export default PreviewPage

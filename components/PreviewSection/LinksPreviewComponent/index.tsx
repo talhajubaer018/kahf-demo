@@ -18,14 +18,14 @@ type PropsType = {
 const LinksPreviewComponent = (props: PropsType) => {
 
     return (
-        <div className='w-1/2 flex flex-col gap-4 mt-12'>
+        <div className='w-1/2 flex flex-col gap-4 mt-12 previewFlex'>
             {
                 props?.linksArray?.map((link) => {
                     return (
                         <div
                             key={`${link?.id}`}
                             className={
-                                cn('bg-textLightGray rounded-md py-2 px-3 mx-4 flex items-center gap-x-2 text-white text-sm',
+                                cn('bg-textLightGray previewFlexChild rounded-md py-2 px-3 mx-4 flex items-center gap-x-2 text-white text-sm',
                                     { 'bg-black': link?.value === 'github' },
                                     { 'bg-[#ef383a]': link?.value === 'youtube' },
                                     { 'bg-[#2d69ff]': link?.value === 'linkedIn' },

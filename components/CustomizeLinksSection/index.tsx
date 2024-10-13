@@ -12,6 +12,7 @@ import { Button } from "../ButtonComponent";
 import PlatformSelectComponent from "./PlatformSelectComponent";
 import IconComponent from "../IconComponent";
 import { COLOR_GRAY } from "@/utils/colorUtils";
+import { useRouter } from "next/navigation";
 
 
 type PropsType = {
@@ -32,6 +33,8 @@ type PropsType = {
 }
 
 export default function CustomizeLinksSection(props: PropsType) {
+    const router = useRouter()
+
     const [focusedInputId, setFocusedInputId] = useState<string | null>(null);
     const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
     console.log("🚀 ~ CustomizeLinksSection ~ inputRefs:", inputRefs)
@@ -46,7 +49,10 @@ export default function CustomizeLinksSection(props: PropsType) {
         e?.preventDefault()
         console.log("🚀 ~ onSubmit ~ e:", e)
 
-        localStorage.setItem('linksArray', JSON.stringify(props?.linksArray))
+        if (props?.linksArray?.length) {
+            localStorage.setItem('linksArray', JSON.stringify(props?.linksArray))
+            router.push('/profile')
+        }
     }
 
     const handleDragEnd = (event: any) => {

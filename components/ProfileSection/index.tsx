@@ -48,7 +48,7 @@ const ProfileSection = (props: PropsType) => {
                 setImagePreview={props?.setImagePreview}
             />
             <form autoComplete="new-password" onSubmit={handleSubmit(create)} className={cn("pt-10 pb-00 relative")}>
-                <section className="profile-custom-grid gap-y-2 items-center bg-[#fafafa] p-4 rounded-md mt-8 text-sm text-gray-500">
+                <section className="profile-details-custom-grid gap-y-2 items-center bg-[#fafafa] p-4 rounded-md mt-8 text-sm text-gray-500">
                     <>
                         <div>First name*</div>
                         <InputFieldComponent
