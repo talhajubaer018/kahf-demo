@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import UploadPictureSection from './UploadPictureSection'
 import { cn } from '@/utils/tailwind-merge';
@@ -25,7 +25,7 @@ type PropsType = {
 }
 
 const ProfileSection = (props: PropsType) => {
-    const { getValues, setValue, control, handleSubmit, formState: { errors }, reset } = useFormHook(createProfileSchema);
+    const { getValues, control, handleSubmit, formState: { errors } } = useFormHook(createProfileSchema);
     console.log("🚀 ~ ProfileSection ~ getValues:", getValues())
     console.log("🚀 ~ ProfileSection ~ errors:", errors)
 

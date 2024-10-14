@@ -147,7 +147,7 @@ body {
   min-width: 280px;
   border-radius: 16px;
   display: block !important;
-  @apply shadow-lg py-10 px-4
+  @apply shadow-lg py-10 px-4;
 }
 .previewPage .previewFlex {
   width: 100%;
@@ -155,4 +155,11 @@ body {
 .previewPage .previewFlexChild {
   width: 70%;
   margin: auto;
+}
+.css-13cymwt-control,
+.react-select__option {
+  cursor: pointer !important;
+}
+.react-select__control:hover {
+  border-color: #613bf7 !important;
 }

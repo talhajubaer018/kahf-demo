@@ -13,7 +13,6 @@ type PropsType = {
 
 const Header = (props: PropsType) => {
 
-
   return (
     <header className='flex items-center bg-white px-4 py-2  rounded-md'>
       <div className='flex items-center gap-x-2 mr-auto'>
@@ -44,7 +43,6 @@ const Header = (props: PropsType) => {
             />
             <div className='font-bold md:block hidden'>Profile Details</div>
           </div>
-          {/* <Button prefixIcon='UserCircle' className={cn('font-bold ', { 'bg-primary/20 text-primary': props?.currentTab === 'profile' })} size={'md'} variant={'default'} >Profile Details</Button> */}
         </Link>
       </div>
       <Link href='/preview'>

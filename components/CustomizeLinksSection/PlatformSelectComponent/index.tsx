@@ -48,9 +48,10 @@ const PlatformSelectComponent = (props: PropsType) => {
         <>
             <div className='text-xs text-textGray mt-3 mb-1'>Platform</div>
             <Select
-                className='focus:outline-primary'
+                className='focus:outline-primary cursor-pointer'
                 options={options}
                 components={{ SingleValue, IndicatorSeparator }}
+                classNamePrefix={'react-select'}
                 // styles={singleSelectStyles}
                 onChange={(e: any) => {
                     console.log("🚀 ~ SortableItem ~ e:", e)

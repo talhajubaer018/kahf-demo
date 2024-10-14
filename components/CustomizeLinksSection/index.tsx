@@ -10,10 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button } from "../ButtonComponent";
 
 import PlatformSelectComponent from "./PlatformSelectComponent";
-import IconComponent from "../IconComponent";
-import { COLOR_ERROR, COLOR_GRAY } from "@/utils/colorUtils";
 import { useRouter } from "next/navigation";
-import { cn } from "@/utils/tailwind-merge";
+import LinkInputComponent from "./LinkInputComponent";
 
 
 type PropsType = {
@@ -38,28 +36,27 @@ export default function CustomizeLinksSection(props: PropsType) {
     // const linkValidator = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/
     const linkValidator = /^[^\s/$.?#].[^\s]*\.[^\s]{2,}$/
 
-    const [focusedInputId, setFocusedInputId] = useState<string | null>(null);
-    const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    console.log("🚀 ~ CustomizeLinksSection ~ inputRefs:", inputRefs)
+    const [focusedInputId, setFocusedInputId] = useState<string | null>(null)
+    const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
+    const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
     useEffect(() => {
         if (focusedInputId && inputRefs.current[focusedInputId]) {
-            inputRefs.current[focusedInputId]?.focus();
+            inputRefs.current[focusedInputId]?.focus()
         }
-    }, [props.linksArray, focusedInputId]);
+    }, [props.linksArray, focusedInputId])
 
     const validateLinks = () => {
-        const newErrors: { [key: string]: string } = {};
+        const newErrors: { [key: string]: string } = {}
         props.linksArray.forEach(link => {
             if (!link.link) {
-                newErrors[link.id] = "Link is required";
+                newErrors[link.id] = "Link is required"
             } else if (!linkValidator.test(link.link)) {
-                newErrors[link.id] = "Invalid URL";
+                newErrors[link.id] = "Invalid URL"
             }
-        });
+        })
         return newErrors;
-    };
+    }
 
     const onSubmit = (e: any) => {
         e?.preventDefault()
@@ -112,12 +109,12 @@ export default function CustomizeLinksSection(props: PropsType) {
         return (
             <div ref={setNodeRef} style={style} {...attributes} className="bg-gray-100 rounded-md p-4 cursor-default">
                 <div className="flex items-center">
-                    <div className="text-textGray font-bold mr-auto cursor-pointer" {...listeners}>
-                        <span className="font-extralight mr-1 text-lg">=</span> Link #{index + 1}
+                    <div className="text-textGray font-bold mr-auto cursor-pointer hover:text-primary" {...listeners}>
+                        <span className="font-extralight  mr-1 text-lg">=</span> Link #{index + 1}
                     </div>
                     {
                         props?.linksArray?.length > 0 ? (
-                            <div onClick={() => removeItemFromList(link?.id)} className="ml-auto text-textGray text-sm">Remove</div>
+                            <div onClick={() => removeItemFromList(link?.id)} className="cursor-pointer hover:text-primary ml-auto text-textGray text-sm">Remove</div>
                         ) : null
                     }
                 </div>
@@ -129,41 +126,19 @@ export default function CustomizeLinksSection(props: PropsType) {
                     />
                 </div>
                 <div className='mt-2'>
-                    <div className='text-xs text-textGray mb-1'>Link</div>
-                    <div className="relative">
-                        <IconComponent name={"Link"} color={COLOR_GRAY} className="absolute top-[15px] left-3" fontSize={14} />
-                        <input
-                            name={`${link?.id}`}
-                            // type="url"
-                            // required
-                            // pattern="^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$"
-                            className={cn('mt-0 w-full p-2 pl-8 border-[1px] border-[#cccccc] rounded-md linkInput focus:outline-primary', { 'border-errorColor': errors[link.id] })}
-                            ref={(el) => {
-                                inputRefs.current[link.id] = el;
-                            }}
-                            placeholder='Link'
-                            value={link?.link}
-                            onFocus={() => setFocusedInputId(link.id)}
-                            onChange={(e) => {
-                                const updatedArray = [...props?.linksArray];
-                                updatedArray[index] = {
-                                    ...updatedArray[index],
-                                    link: e?.target?.value
-                                };
-                                props?.setLinksArray(updatedArray);
-                            }}
-                        />
-                        {errors[link.id] && (
-                            <p className="text-errorColor flex items-center gap-x-2 font-medium text-[12px] mt-1">
-                                <IconComponent name={"Warning"} color={COLOR_ERROR} fontSize={16} />
-                                {errors[link.id]}
-                            </p>
-                        )}
-                    </div>
+                    <LinkInputComponent
+                        link={link}
+                        inputRefs={inputRefs}
+                        setFocusedInputId={setFocusedInputId}
+                        index={index}
+                        linksArray={props?.linksArray}
+                        setLinksArray={props?.setLinksArray}
+                        errors={errors}
+                    />
                 </div>
             </div>
-        );
-    };
+        )
+    }
 
     return (
         <section className="px-8 py-12 bg-white rounded-md">
@@ -178,7 +153,6 @@ export default function CustomizeLinksSection(props: PropsType) {
             </Button>
             <form onSubmit={onSubmit}>
                 <section className="relative">
-
                     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                         <SortableContext items={props?.linksArray} strategy={verticalListSortingStrategy}>
                             <div className="flex flex-col gap-4 mt-4">
@@ -195,5 +169,5 @@ export default function CustomizeLinksSection(props: PropsType) {
                 <Button className="mt-12 ml-auto text-xs" type="submit">Save</Button>
             </form>
         </section>
-    );
+    )
 }
