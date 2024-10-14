@@ -24,7 +24,7 @@ const LinksPage = () => {
 
 
     return (
-        <main className='mainContainer px-4 bg-red-200 pt-4'>
+        <main className='mainContainer px-4 bg-[#fafafa] pt-4'>
             <Header currentTab='links' />
             <div className='grid grid-custom gap-x-4 mt-5'>
                 <PreviewSection
