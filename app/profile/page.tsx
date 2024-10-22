@@ -18,7 +18,6 @@ const ProfilePage = () => {
     const [profileDetails, setProfileDetails] = useState({ firstName: '', lastName: '', email: '' })
 
     useEffect(() => {
-        console.log('11111111', JSON.parse(localStorage.getItem('linksArray') ?? ''))
         if (localStorage?.getItem('linksArray')) {
             setLinksArray(JSON.parse(localStorage.getItem('linksArray') as string))
         }
