@@ -48,6 +48,7 @@ const PlatformSelectComponent = (props: PropsType) => {
         <>
             <div className='text-xs text-textGray mt-3 mb-1'>Platform</div>
             <Select
+                menuIsOpen
                 className='focus:outline-primary cursor-pointer'
                 options={options}
                 components={{ SingleValue, IndicatorSeparator }}

@@ -34,7 +34,7 @@ body {
   min-height: 100dvh;
 }
 .previewDiv {
-  background-image: url("../public/iphone-mockup.png");
+  background-image: url('../public/iphone-mockup.png');
   background-repeat: no-repeat;
   background-position: center;
   /* height: 400px; */
@@ -162,4 +162,7 @@ body {
 }
 .react-select__control:hover {
   border-color: #613bf7 !important;
+}
+.react-select__menu-list {
+  color: black !important;
 }
